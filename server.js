@@ -8,9 +8,9 @@ const bodyParser = require("body-parser");
 // const Data = require("./data");
 
 //endpoints
-const businessRoute = require("./business.route");
-const projectRoute = require("./project.route");
-const formRoute = require("./form.route");
+// const businessRoute = require("./business.route");
+// const projectRoute = require("./project.route");
+// const formRoute = require("./form.route");
 
 const API_PORT = 3001;
 const app = express();
@@ -36,9 +36,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // app.use(logger("dev"));
 
-app.use("/business", businessRoute);
-app.use("/project", projectRoute);
-app.use("/form", formRoute);
+// app.use("/business", businessRoute);
+// app.use("/project", projectRoute);
+// app.use("/form", formRoute);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
