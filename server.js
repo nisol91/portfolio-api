@@ -1,4 +1,4 @@
-// //=======================best way to connect to mongodb atlas cloud
+// // //=======================best way to connect to mongodb atlas cloud
 
 // const mongoose = require("mongoose");
 // const express = require("express");
@@ -78,6 +78,20 @@
 
 //==================ALTRO MODO
 var mongoose = require("mongoose");
+
+const express = require("express");
+var cors = require("cors");
+const bodyParser = require("body-parser");
+
+//endpoints
+const businessRoute = require("./business.route");
+const projectRoute = require("./project.route");
+const formRoute = require("./form.route");
+
+const API_PORT = 3001;
+const app = express();
+app.use(cors());
+
 mongoose.connect(
   "mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio"
 );
@@ -98,3 +112,13 @@ mongoose.connection.on("open", function(err, doc) {
     });
   });
 });
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use("/business", businessRoute);
+app.use("/project", projectRoute);
+app.use("/form", formRoute);
+
+// launch our backend into a port
+app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
