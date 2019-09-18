@@ -25,6 +25,7 @@ projectRoutes.route("/").get(function(req, res) {
     if (err) {
       console.log(err);
     } else {
+      // res.json(projects);
       console.log(projects);
     }
   });
