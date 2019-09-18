@@ -48,9 +48,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
-var ObjectID = mongodb.ObjectID;
-
-var CONTACTS_COLLECTION = "contacts";
 
 var app = express();
 app.use(bodyParser.json());
@@ -60,8 +57,7 @@ var db;
 
 // Connect to the database before starting the application server.
 mongodb.MongoClient.connect(
-  process.env.MONGODB_URI ||
-    "mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio",
+  "mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio",
   function(err, client) {
     if (err) {
       console.log(err);
@@ -73,7 +69,7 @@ mongodb.MongoClient.connect(
     console.log("Database connection ready");
 
     // Initialize the app.
-    var server = app.listen(process.env.PORT || 8080, function() {
+    var server = app.listen(4040, function() {
       var port = server.address().port;
       console.log("App now running on port", port);
     });
