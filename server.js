@@ -12,7 +12,7 @@ const businessRoute = require("./business.route");
 const projectRoute = require("./project.route");
 const formRoute = require("./form.route");
 
-const API_PORT = 3005;
+const PORT = process.env.PORT || 3005;
 const app = express();
 app.use(cors());
 // const router = express.Router();
@@ -41,9 +41,7 @@ app.use("/project", projectRoute);
 app.use("/form", formRoute);
 
 // launch our backend into a port
-app.listen(API_PORT || 5000, () =>
-  console.log(`LISTENING ON PORT ${API_PORT}`)
-);
+app.listen(PORT, () => console.log(`LISTENING ON PORT ${PORT}`));
 
 //***************************************************** */
 
