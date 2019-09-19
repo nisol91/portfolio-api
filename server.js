@@ -1,47 +1,47 @@
 // // //=======================best way to connect to mongodb atlas cloud
 
-const mongoose = require("mongoose");
-const express = require("express");
-var cors = require("cors");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-// const Data = require("./data");
+// const mongoose = require("mongoose");
+// const express = require("express");
+// var cors = require("cors");
+// const bodyParser = require("body-parser");
+// const logger = require("morgan");
+// // const Data = require("./data");
 
-//endpoints
-const businessRoute = require("./business.route");
-const projectRoute = require("./project.route");
-const formRoute = require("./form.route");
+// //endpoints
+// const businessRoute = require("./business.route");
+// const projectRoute = require("./project.route");
+// const formRoute = require("./form.route");
 
-const API_PORT = 3001;
-const app = express();
-app.use(cors());
-// const router = express.Router();
+// const API_PORT = 3001;
+// const app = express();
+// app.use(cors());
+// // const router = express.Router();
 
-// this is our MongoDB database
-const dbRoute = `mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio`;
+// // this is our MongoDB database
+// const dbRoute = `mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio`;
 
-// connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true });
+// // connects our back end code with the database
+// mongoose.connect(dbRoute, { useNewUrlParser: true });
 
-let db = mongoose.connection;
+// let db = mongoose.connection;
 
-db.once("open", () => console.log("connected to the database"));
+// db.once("open", () => console.log("connected to the database"));
 
-// checks if connection with the database is successful
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+// // checks if connection with the database is successful
+// db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-// (optional) only made for logging and
-// bodyParser, parses the request body to be a readable json format
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(logger("dev"));
+// // (optional) only made for logging and
+// // bodyParser, parses the request body to be a readable json format
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use(logger("dev"));
 
-app.use("/business", businessRoute);
-app.use("/project", projectRoute);
-app.use("/form", formRoute);
+// app.use("/business", businessRoute);
+// app.use("/project", projectRoute);
+// app.use("/form", formRoute);
 
-// launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+// // launch our backend into a port
+// app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 
 //=============heroku style
 
@@ -77,48 +77,48 @@ app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 // );
 
 //==================ALTRO MODO
-// var mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
-// const express = require("express");
-// var cors = require("cors");
-// const bodyParser = require("body-parser");
+const express = require("express");
+var cors = require("cors");
+const bodyParser = require("body-parser");
 
-// //endpoints
-// const businessRoute = require("./business.route");
-// const projectRoute = require("./project.route");
-// const formRoute = require("./form.route");
+//endpoints
+const businessRoute = require("./business.route");
+const projectRoute = require("./project.route");
+const formRoute = require("./form.route");
 
-// const API_PORT = 3001;
-// const app = express();
-// app.use(cors());
+const API_PORT = 3001;
+const app = express();
+app.use(cors());
 
-// mongoose.connect(
-//   "mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio"
-// );
+mongoose.connect(
+  "mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio"
+);
 
-// // Wait until connection is established
-// mongoose.connection.on("open", function(err, doc) {
-//   console.log("connection established");
+// Wait until connection is established
+mongoose.connection.on("open", function(err, doc) {
+  console.log("connection established");
 
-//   mongoose.connection.db.collection("project", function(err, docs) {
-//     // Check for error
-//     if (err) return console.log(err);
-//     // Walk through the cursor
-//     docs.find().each(function(err, doc) {
-//       // Check for error
-//       if (err) return console.err(err);
-//       // Log document
-//       console.log(doc);
-//     });
-//   });
-// });
+  mongoose.connection.db.collection("project", function(err, docs) {
+    // Check for error
+    if (err) return console.log(err);
+    // Walk through the cursor
+    docs.find().each(function(err, doc) {
+      // Check for error
+      if (err) return console.err(err);
+      // Log document
+      console.log(doc);
+    });
+  });
+});
 
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-// app.use("/business", businessRoute);
-// app.use("/project", projectRoute);
-// app.use("/form", formRoute);
+app.use("/business", businessRoute);
+app.use("/project", projectRoute);
+app.use("/form", formRoute);
 
-// // launch our backend into a port
-// app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+// launch our backend into a port
+app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
