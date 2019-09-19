@@ -93,7 +93,8 @@ const app = express();
 app.use(cors());
 
 mongoose.connect(
-  "mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio"
+  "mongodb+srv://default-user:default_users_psw_010203@cluster0-dqmij.gcp.mongodb.net/portfolio",
+  { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
 // Wait until connection is established
