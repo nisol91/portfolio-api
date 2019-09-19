@@ -69,7 +69,7 @@ mongodb.MongoClient.connect(
     console.log("Database connection ready");
 
     // Initialize the app.
-    var server = app.listen(4040, function() {
+    var server = app.listen(4050, function() {
       var port = server.address().port;
       console.log("App now running on port", port);
     });
